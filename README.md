@@ -98,7 +98,20 @@ voicebot/
   scenarios.py    # loads scenarios.yaml
   transcript.py   # formats a finished call into a readable transcript
 scenarios/
-  scenarios.yaml  # the patient personas / test cases
+  scenarios.yaml  # the 16 patient personas / test cases (incl. targeted bug-hunters)
 ARCHITECTURE.md   # how it works + why
-BUGS.md           # bug report (filled in after listening to calls)
+BUGS.md           # bug report — issues found in the agent, with quotes + timestamps
+ITERATION.md      # how the bot was improved by listening to real calls
+VIDEO_GUIDE.md    # scripts/outlines for the two required videos
+tuning/           # tuning recordings (voicetest-A…G) — evidence of iteration
+recordings/       # official call recordings (mp3)
+transcripts/      # official call transcripts (timestamped, both sides)
 ```
+
+## Scenarios
+
+16 patient scenarios covering the required flows (scheduling, reschedule, cancel, refill,
+insurance update, and questions about hours/location/insurance), a range of edge cases
+(interruptions, vague/rambling callers, out-of-scope clinical asks, multi-request calls), and
+three **targeted bug-hunters**: insisting on a weekend appointment, giving the wrong date of
+birth, and requesting a controlled substance by phone. See `scenarios/scenarios.yaml`.

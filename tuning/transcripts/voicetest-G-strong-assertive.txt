@@ -1,0 +1,29 @@
+Call ID:   019f1fc5-f734-7000-9f4b-ad98e55b148d
+Scenario:  schedule-new — Simple appointment scheduling
+Number:    +18054398008
+Status:    ended
+Ended:     assistant-ended-call
+Cost:      $0.3609
+------------------------------------------------------------
+[00:01] AGENT: This call may be recorded for quality and training purposes. Thanks for calling Pivot Point Orthopaedics. Part of Pretty Good AI. How may I help you today?
+[00:15] PATIENT (bot): Hey, uh, I've got this issue with my right knee. It's been hurting for about a week now. After a bath, basketball game. I'm just trying to set up an appointment to get it checked out. Do you have any openings this week? Oh, and let me just turn the TV down a sec. Sorry about that.
+[00:31] AGENT: You're calling from the number we have on file. Am I speaking with Dylan?
+[00:37] PATIENT (bot): Yep. That's me, Dylan Ackerman.
+[00:41] AGENT: Please provide your date of birth.
+[00:44] PATIENT (bot): Yeah, sure. It's April 22 2007.
+[00:51] AGENT: Thanks, Dylan. Just to confirm, you'd like to book an appointment to have your right knee pain checked out after your basket Is this for an urgent concern, or is it more of a routine check?
+[01:03] PATIENT (bot): It's not super urgent since I can still walk on it, but it's been aching for week now, so I figured I should probably get it looked at.
+[01:13] AGENT: Do you have a preferred provider or are you open to seeing anyone available?
+[01:19] PATIENT (bot): I'm open to seeing whoever's available. I just want to get this knee checked out soon.
+[01:25] AGENT: Let me check for the next available appointments for you this week. 1 moment.
+[01:31] PATIENT (bot): Alright. Thanks, Tim.
+[01:31] AGENT: It looks like you already have an
+[01:36] PATIENT (bot): Wait. I have an appointment already booked? Didn't think I had anything coming up. Could you check that for me?
+[01:48] AGENT: You have 2 upcoming appointments scheduled with doctors at noon Lukasky. The 1st is tomorrow, Thursday, July 2nd at 8 15 AM. And the 2nd is Friday, July 10th at 2 30 PM. Would you like to keep both? Or do you want to make any changes?
+[02:07] PATIENT (bot): Oh, wait. Yeah. I think I booked that July 2nd 1 for something else earlier. That works for me to get this knee thing checked out. Let's keep that tomorrow appointment, but I don't think I need the 1 on the 10th anymore. Could you cancel that for me?
+[02:23] AGENT: I can cancel your appointment on Friday, July 10th, doctor Zippingnew Lukowski. Can you tell me the reason for canceling this appointment?
+[02:32] PATIENT (bot): Yeah. Uh, is just that the problem I'm dealing with will probably get sorted with the earlier appointment tomorrow. No point in keeping the later 1 if it's not needed. Right?
+[02:44] AGENT: Your appointment on Friday, July 10th has been canceled. You still have your visit tomorrow at 8 15 AM. There anything else you'd like help with today?
+[02:54] PATIENT (bot): Nope. That's all I needed. For sorting that out. I'll see you guys tomorrow morning. Bye.
+[03:01] AGENT: You're all set for tomorrow at 8 15 AM.
+[03:03] AGENT: We look

@@ -1,0 +1,26 @@
+Call ID:   019f1fb6-318c-799d-aba4-68d33e6f761f
+Scenario:  schedule-new — Simple appointment scheduling
+Number:    +18054398008
+Status:    ended
+Ended:     assistant-ended-call
+Cost:      $0.3425
+------------------------------------------------------------
+[00:01] AGENT: This call may be recorded for quality and training purposes. Thanks for calling PivotPoint Orthopedic. Part of Pretty Good AI. How may I help you today?
+[00:14] PATIENT (bot): Oh, hey. Uh, this is Dylan Ackerman. I'm calling because my right knee has been giving me trouble after a basketball game and I'm hoping to book an appointment to get it checked out. Uh, do you have anything available during the week?
+[00:28] AGENT: Please provide your date of birth.
+[00:31] PATIENT (bot): Yeah. Sure. It's April 22 2007.
+[00:38] AGENT: Thanks, Dylan. Just to confirm, you'd like to book an appointment to have your right knee checked after your basketball injury. Is this for an urgent concern, or is it more of a routine check?
+[00:49] PATIENT (bot): Uh, it's not super urgent. I can still move around. It's been aching for about a week now so I just wanna get it checked out to be safe.
+[01:00] AGENT: Do you have a specific provider you'd like to see, or are you open to anyone available?
+[01:06] PATIENT (bot): I'm open to anyone available really. I just want to get this knee looked at soon.
+[01:13] AGENT: There aren't any openings this week. Would you like me to check for available appointments early next week?
+[01:20] PATIENT (bot): Yeah, early next week would be great, thanks.
+[01:29] AGENT: There still aren't any openings early next week. Would you like me to keep checking later dates or would you prefer to speak with someone from the office for help finding a time?
+[01:42] PATIENT (bot): Oh, uh, yeah. If you could check later dates, that'd be fine. If someone from the office might have better luck finding a time, I'm okay with that too. Whatever works.
+[02:09] AGENT: It looks like there are no available appointments for an office visit. Even several weeks out. I'll have someone from the office follow-up with you as soon as possible to help find a time. Is 3 2
+[02:22] PATIENT (bot): Oh, okay. That sounds good.
+[02:23] AGENT: 1
+[02:25] PATIENT (bot): Oh, okay. That sounds good. Thanks for the help. Uh, should I expect a callback or is there a better way to catch them?
+[02:36] AGENT: You'll get a callback from the office as soon as possible to help schedule your appointment. I'm processing your request now. A case has already been created for your appointment request. And the office will call you back at your number to help schedule.
+[02:52] PATIENT (bot): Alright. Sounds good. Thanks for setting that up. I'll keep an eye out for the call. Have a good 1.
+[02:59] AGENT: You're all set, Dylan. The office will reach out soon. Take care.
