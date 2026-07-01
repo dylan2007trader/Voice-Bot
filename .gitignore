@@ -1,0 +1,13 @@
+# Secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+
+# Call artifacts are committed for the submission, but ignore scratch/temp
+*.tmp
+.DS_Store

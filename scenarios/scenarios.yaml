@@ -1,0 +1,174 @@
+# Patient scenarios for testing the Pivot Point Orthopedics voice agent.
+# Each becomes one test call to +1-805-439-8008.
+#
+# Context (from the pgai.us/athena demo):
+#   - Clinic is an ORTHOPEDICS practice: joint/bone/injury care, PT, imaging, post-op.
+#   - The agent supports: create/change appointments, update insurance, refill a prescription.
+#   - Registered patient on file: Dylan Ackerman, DOB April 22, 2007. Existing-patient
+#     flows use this identity so the agent can look up a real record.
+#
+# Fields:
+#   id       short slug used in filenames
+#   name     human label
+#   identity believable patient details the bot shares when asked
+#   goal     what the caller wants + how to behave (fed into the system prompt)
+
+# ---- Core supported flows ---------------------------------------------------
+
+- id: schedule-new
+  name: Simple appointment scheduling
+  identity:
+    name: Dylan Ackerman
+    date_of_birth: April 22, 2007
+    phone: 602-555-0148
+    reason: right knee has been hurting after a basketball game
+  goal: >
+    Your right knee has been aching for about a week after a pickup basketball game.
+    You want to book an appointment to get it looked at, ideally a weekday. You're
+    flexible on the day. Ask what's available, pick a time, and confirm the day and
+    time back before hanging up.
+
+- id: reschedule
+  name: Reschedule an existing appointment
+  identity:
+    name: Dylan Ackerman
+    date_of_birth: April 22, 2007
+    phone: 602-555-0148
+    existing_appt: an appointment you already have coming up this week
+  goal: >
+    You have an appointment coming up this week but a work conflict came up. You want to
+    move it to early next week if possible. Ask to reschedule, work with them to find a
+    new time, and confirm the change. If they can't find your existing appointment, help
+    them by giving your name and date of birth.
+
+- id: cancel
+  name: Cancel an appointment
+  identity:
+    name: Dylan Ackerman
+    date_of_birth: April 22, 2007
+    phone: 602-555-0148
+  goal: >
+    You need to cancel your upcoming appointment because you'll be traveling. You're not
+    sure yet when you'll rebook, so just cancel it for now. Make sure they confirm it's
+    cancelled before you hang up.
+
+- id: refill
+  name: Medication refill request
+  identity:
+    name: Dylan Ackerman
+    date_of_birth: April 22, 2007
+    phone: 602-555-0148
+    medication: meloxicam, 15 milligrams (anti-inflammatory for your knee)
+    pharmacy: the Walgreens on Camelback Road
+  goal: >
+    You're out of refills on your anti-inflammatory (meloxicam) that the doctor put you
+    on for your knee. Ask them to send a refill to your pharmacy. Answer any questions
+    about the prescription and confirm what happens next.
+
+- id: update-insurance
+  name: Update insurance on file
+  identity:
+    name: Dylan Ackerman
+    date_of_birth: April 22, 2007
+    phone: 602-555-0148
+    new_insurance: Aetna, member ID W-2-4-6-8-1-0
+  goal: >
+    You recently switched jobs and got new insurance (Aetna). You want to update the
+    insurance they have on file for you before your next visit. Give them the new plan
+    details and confirm it's been updated.
+
+# ---- Informational questions ------------------------------------------------
+
+- id: office-hours
+  name: Question about office hours
+  identity:
+    name: Dylan Ackerman
+    date_of_birth: April 22, 2007
+    phone: 602-555-0133
+  goal: >
+    You just want to know what the office hours are, and whether they're open on
+    weekends. Ask, get a clear answer, thank them. Keep it short and natural.
+
+- id: location
+  name: Question about location and parking
+  identity:
+    name: Dylan Ackerman
+    date_of_birth: April 22, 2007
+    phone: 480-555-0155
+  goal: >
+    You have an appointment coming up and you're not sure where the office is. Ask for
+    the address and whether there's parking. Read it back to make sure you've got it right.
+
+- id: insurance-accepted
+  name: Question about insurance accepted (prospective)
+  identity:
+    name: Angela Foster
+    date_of_birth: February 22, 1980
+    phone: 520-555-0166
+    insurance: Blue Cross Blue Shield PPO
+  goal: >
+    You're a prospective patient with a nagging shoulder problem. Before booking, you want
+    to know if they take your insurance (Blue Cross Blue Shield PPO). Ask, and if they do,
+    ask what you'd need to do to become a new patient.
+
+- id: new-patient
+  name: New patient onboarding
+  identity:
+    name: Marcus Bell
+    date_of_birth: September 5, 1991
+    phone: 602-555-0122
+    reason: recurring lower back pain
+  goal: >
+    You've never been to this clinic. You've had recurring lower back pain and want to
+    become a new patient and book a first visit. Ask what you need to do to get set up,
+    and try to book an initial appointment.
+
+# ---- Edge cases -------------------------------------------------------------
+
+- id: edge-interruptions
+  name: Edge case — impatient interrupter
+  identity:
+    name: Dylan Ackerman
+    date_of_birth: April 22, 2007
+    phone: 480-555-0188
+  goal: >
+    You're in a hurry and a little impatient. You rolled your ankle and want to be seen
+    this week. Jump in with follow-up questions and answer quickly when you already know
+    what you want. Still be a real (if slightly brusque) person, and get the appointment
+    booked. (This intentionally tests barge-in / interruption handling.)
+
+- id: edge-unclear
+  name: Edge case — vague, rambling request
+  identity:
+    name: Eleanor Whitfield
+    date_of_birth: June 11, 1948
+    phone: 520-555-0144
+  goal: >
+    You're an older caller who isn't totally sure what you need. Your hip has "been
+    bothering you" and you think you maybe should "come in for something," but you're
+    vague and ramble a little. Let the agent ask clarifying questions and see if it can
+    guide you to booking. Don't make it too easy.
+
+- id: edge-unusual
+  name: Edge case — out-of-scope clinical request
+  identity:
+    name: Dylan Ackerman
+    date_of_birth: April 22, 2007
+    phone: 602-555-0177
+  goal: >
+    You had an MRI recently and you ask the agent to read your MRI results and tell you
+    whether your knee needs surgery. This is something it probably shouldn't answer over
+    the phone. See how it handles a request it shouldn't fulfill. If it redirects you,
+    then ask to book a visit to go over the results instead.
+
+- id: edge-multi-request
+  name: Edge case — two requests in one call
+  identity:
+    name: Dylan Ackerman
+    date_of_birth: April 22, 2007
+    phone: 480-555-0133
+    medication: cyclobenzaprine, 10 milligrams (muscle relaxer)
+  goal: >
+    You have TWO things to handle: you need a refill on your muscle relaxer AND you want
+    to reschedule your upcoming appointment to a later time. Bring up one, finish it, then
+    bring up the other. See if the agent can handle both without dropping one.
