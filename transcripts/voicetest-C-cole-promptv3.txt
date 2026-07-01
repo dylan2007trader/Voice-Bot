@@ -1,0 +1,25 @@
+Call ID:   019f1f99-1eaa-7001-835a-9be8d70cf293
+Scenario:  schedule-new — Simple appointment scheduling
+Number:    +18054398008
+Status:    ended
+Ended:     assistant-said-end-call-phrase
+Cost:      $0.2209
+------------------------------------------------------------
+[00:01] AGENT: This call may be recorded for quality and training purposes. Thanks for calling PivotPoint Orthopedics.
+[00:07] PATIENT (bot): Okay.
+[00:09] AGENT: Part of Pretty Good AI. How may I help you today?
+[00:14] PATIENT (bot): Hi. I'm Dylan Ackerman. Like to book an appointment to have my my right knee checked. Uh, it's been hurting after a basketball game.
+[00:25] AGENT: Please provide your date of birth.
+[00:27] PATIENT (bot): Sure. It's April 22 2007.
+[00:38] AGENT: Thanks, Dylan. Just to confirm, you'd like to book an appointment to have your right knee pain checked after a basketball game. Is this for an urgent or same day concern? Or is it more of a routine issue?
+[00:51] PATIENT (bot): Um, it's not urgent. More routine. It's been hurting for about a week now.
+[00:58] AGENT: Do you have a specific provider you'd like to see, or are you open to anyone available?
+[01:03] PATIENT (bot): I'm open to anyone available.
+[01:08] AGENT: There aren't any open appointments available through next Wednesday. Would you like to look for times later next week or try a different date?
+[01:17] PATIENT (bot): Looking for times later next week. Would be great. Um, what do you have available?
+[01:25] AGENT: They're still on any open appointments later next week. You like me to have someone from the office follow-up with you to find a time? Or would you prefer to try searching for a different week?
+[01:36] PATIENT (bot): Could someone from the office follow-up with me? That'd be great.
+[01:52] AGENT: Dylan, I wasn't able to find any open appointments in the next 2 weeks. I've let our clinic support team know
+[01:56] PATIENT (bot): Alright.
+[01:59] AGENT: you're all set. The clinic support team will call
+[02:04] PATIENT (bot): Thanks so much for your help. Wait for their call. Goodbye.
