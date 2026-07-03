@@ -17,12 +17,18 @@ scenario personas), places the outbound calls, and pulls back the recordings and
 
 ### 1. Create a Vapi account
 1. Sign up at [vapi.ai](https://vapi.ai) and open the [dashboard](https://dashboard.vapi.ai).
-2. **Get a phone number:** Phone Numbers → create a free Vapi number. This is your single
-   caller ID for every call (and the number you report on the submission form, in E.164).
+2. **Get a phone number.** You need one caller ID that every call goes out from (this is
+   also the number you report on the submission form, in E.164). Two options:
+   - **Free Vapi number** — Phone Numbers → create one. Easiest, but Vapi caps free numbers
+     at ~10 calls/day.
+   - **Twilio number imported into Vapi** — buy a cheap number in Twilio, then Phone Numbers
+     → Import → paste the Twilio SID/token. This is what I used so I could make all my test
+     calls from a single number without hitting the daily cap.
 3. **Get your API key:** Settings → API Keys → copy your **private** key.
 
-New accounts include ~$10 of free credits (~150–200 minutes) — more than enough for the
-10–15 short calls this project makes, so it should cost you nothing out of pocket.
+Vapi gives new accounts ~$10 of free credit (~150–200 minutes), which covers the calls this
+project makes. If you go the Twilio route you'll also pay Twilio's small per-number and
+per-minute charges — my whole run still came in well under the challenge's ~$20 note.
 
 ### 2. Configure the project
 ```bash
@@ -102,8 +108,6 @@ scenarios/
 ARCHITECTURE.md   # how it works + why
 BUGS.md           # bug report — issues found in the agent, with quotes + timestamps
 ITERATION.md      # how the bot was improved by listening to real calls
-VIDEO_GUIDE.md    # scripts/outlines for the two required videos
-tuning/           # tuning recordings (voicetest-A…G) — evidence of iteration
 recordings/       # official call recordings (mp3)
 transcripts/      # official call transcripts (timestamped, both sides)
 ```
