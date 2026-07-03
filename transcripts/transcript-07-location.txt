@@ -1,0 +1,15 @@
+Call ID:   019f255c-564a-7007-9b0c-7dd9f7131bb3
+Scenario:  location — Question about location and parking
+Number:    +18054398008
+Status:    ended
+Ended:     customer-ended-call
+Cost:      $0.1309
+------------------------------------------------------------
+[00:01] AGENT: This call may be recorded for quality and training purposes.
+[00:17] PATIENT (bot): Got it. Waiting for a real greeting.
+[00:21] AGENT: Welcome to PivotPoint Orthopedics. How could I assist you today?
+[00:26] PATIENT (bot): Hi. This is Tom Bradley. I have an appointment coming up. But I'm not sure where your office is. Could you give me the address and do you guys have parking there?
+[00:37] AGENT: Our clinic is located at 1 2 3 4 Recovery Way, suite 200, Austin. Free patient parking is available in the lot in front of the building. Is there anything else you'd like to know about your appointment?
+[00:52] PATIENT (bot): Great. Thanks. So that's 1 2 3 4 Recovery Way, suite 200. In Austin. Right? And there's free parking out front Uh, nope. I think that's all I needed. For your help.
+[01:04] AGENT: That's correct. 12 34 Recovery Way, suite 200, Austin with free parking out front. Glad I could help. Have a great day.
+[01:13] PATIENT (bot): Awesome. Thanks a lot. Have a great day. Bye.

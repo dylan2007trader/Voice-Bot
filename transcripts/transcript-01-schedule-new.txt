@@ -1,0 +1,29 @@
+Call ID:   019f2551-a6b7-7883-967b-84e525e72e40
+Scenario:  schedule-new — Simple appointment scheduling
+Number:    +18054398008
+Status:    ended
+Ended:     assistant-ended-call
+Cost:      $0.3089
+------------------------------------------------------------
+[00:01] AGENT: This call may be recorded for quality and training purposes. Thanks for calling PivotPoint Orthopedics. Part of Pretty Good AI. How may I help you today?
+[00:14] PATIENT (bot): Hi. This is Tyler Brooks. I'm calling because my right knee has been hurting for about a week. I after a basketball game, and I wanna book an appointment to get it checked out. What do you guys have available?
+[00:27] AGENT: Can you please provide your date of birth?
+[00:31] PATIENT (bot): Yeah. Sure. It's June 15 2001.
+[00:37] AGENT: Just to confirm, I have your name as Tyler Brooks. And your date of birth as June 15th 2001. Is that correct? Yes. So please spell your 1st and last name for me.
+[00:49] PATIENT (bot): Yeah, that's correct. My 1st name is Tyler, t y l e r, and my last name is Brooks. B r o 0 k s.
+[00:59] AGENT: Would you like to use your phone number to look up your record? If so, please tell me the number you have
+[01:03] PATIENT (bot): Yeah.
+[01:08] PATIENT (bot): Yeah. Sure.
+[01:08] AGENT: please provide the phone number you have on file with us.
+[01:12] PATIENT (bot): Oh, uh, it should be the 1 I'm calling from.
+[01:17] AGENT: Just to confirm, I have your number as 5 8 2 2 6 7 0 8 9 9. Is that correct?
+[01:26] PATIENT (bot): Yeah, that sounds right.
+[01:31] AGENT: I have your name as Tyler Brooks. Date of birth, June 15th 2001, and phone number 5 8 2 2 6 7 0 8 9 9.
+[01:42] PATIENT (bot): Yep, that's all correct.
+[01:43] AGENT: Is all
+[01:47] PATIENT (bot): Yeah. That's all correct.
+[01:52] AGENT: I can't proceed further right now, but I can make sure our clinic support team follows up with you. Would you like me to connect you to our patient support team?
+[02:02] PATIENT (bot): Um, how long would that take? Is there anything you can do to help me book now?
+[02:08] AGENT: Right now, I'm unable to book your appointment directly because I can't access your record. If you'd like, I can connect you to our patient support team right away. They can help you book. Would you like to be connected now?
+[02:22] PATIENT (bot): Alright. If that's the best way to book it, please go ahead and connect me to them. Thanks.
+[02:29] AGENT: Connecting you to a representative. Please wait.

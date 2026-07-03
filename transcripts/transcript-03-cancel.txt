@@ -1,0 +1,23 @@
+Call ID:   019f2559-c444-7dde-b6cb-b0b11d8eb056
+Scenario:  cancel — Cancel an appointment
+Number:    +18054398008
+Status:    ended
+Ended:     assistant-said-end-call-phrase
+Cost:      $0.2255
+------------------------------------------------------------
+[00:01] AGENT: This call may be recorded for quality and training purposes. Thanks for calling. For How may I help you?
+[00:14] PATIENT (bot): Hi. This is James Carter. Need to cancel an upcoming appointment I have with you guys.
+[00:22] AGENT: I see you're calling from the number we have on file. Am I speaking with James?
+[00:28] PATIENT (bot): Yep. That's me.
+[00:30] AGENT: Please provide your date of birth.
+[00:33] PATIENT (bot): Yeah. It's James. My date of birth is July 2 19 75.
+[00:42] AGENT: You have 2 upcoming appointments. 1 today with doctor Zivigniew Lukovsky and another on Friday, July 10th with doctor Kelly Noble. Which 1 would you like to cancel?
+[00:54] PATIENT (bot): Oh, uh, I didn't realize I had 1 today. I need to cancel the 1 on July 10th with doctor Noble.
+[01:02] AGENT: No problem. Can you tell me the reason for canceling your appointment with doctor Kelly Noble on July 10th?
+[01:11] PATIENT (bot): Yeah. Sure. Um, I'll be traveling during that time, so I won't be able to make it.
+[01:17] AGENT: Just to confirm, you want to cancel your appointment on Friday, July 10th. With doctor Kelly Noble. Is that correct?
+[01:25] PATIENT (bot): Yeah. That's right. Cancel the July 10th with doctor Noble.
+[01:32] AGENT: Your appointment with Kelly Noble on Your appointment with Kelly Noble on July 10th has been canceled. Is there anything else I can help you with today?
+[01:47] PATIENT (bot): Nope. That's all. Thanks for your help.
+[01:51] AGENT: You're all set. If you need anything else, just give us a call. Have a great day.
+[01:57] PATIENT (bot): Goodbye.

@@ -1,0 +1,29 @@
+Call ID:   019f2561-59b4-7cc9-be9d-07f3831db19f
+Scenario:  edge-interruptions — Edge case — impatient interrupter
+Number:    +18054398008
+Status:    ended
+Ended:     customer-ended-call
+Cost:      $0.4132
+------------------------------------------------------------
+[00:01] AGENT: This call may be recorded for quality and training purposes. Thanks for calling PivotPoint Orthopaedics. Part of Pretty Good AI. How may I help you today?
+[00:14] PATIENT (bot): Hi. This is Frank Roo. Russo. I, uh, rolled my ankle pretty badly, and I'm hoping to get seen this week there any chance you have something open soon?
+[00:24] AGENT: I see you're calling from the number we have on file. Am I speaking with Phil?
+[00:30] PATIENT (bot): No. No. It's Frank. Frank Russo, r u s s o.
+[00:35] AGENT: Please provide your full date of birth.
+[00:38] PATIENT (bot): Yeah. It's April 17th 19 62.
+[00:45] AGENT: Just to confirm, I have your name as Frank Russo, and your date of birth as April 17th 19 62. Is that correct? If so, could you please spell your last name for me?
+[00:56] PATIENT (bot): Yeah, that's right. My last name is spelled r u s s o.
+[01:04] AGENT: Would you like to use your phone number to look up your record? If so, please tell me the number you have on file with us. If you're not sure, just let me know.
+[01:14] PATIENT (bot): You know, I'm not really sure what number you guys have on file, so maybe it's best to look it up with the number I'm calling from.
+[01:22] AGENT: No problem. To make sure I have everything correct, could you please confirm your 1st name, last name, and date of birth 1 more time? Just say them for me and spell your last name.
+[01:33] PATIENT (bot): Sure. It's Frank Russo, r u s s o. And my birth date's April 17th 19 62.
+[01:42] AGENT: I have your name as Frank Russo. Spelled r u s s o and your date of as April 19 62. The number you're calling from is 5 8 2 2 6 7 0 8 9 9. Is all of that correct?
+[02:04] PATIENT (bot): Oh, hang on. My birthday is actually April 17th, not the 19th. Everything else looks good though.
+[02:13] AGENT: I can't proceed further right now, but I can make sure our clinic support team follows up with you. Would you like me to connect you to our patient support team?
+[02:23] PATIENT (bot): Uh, I mean, is there any way you can check for openings yourself 1st? I'm hoping to just lock something in now rather than wait for a callback.
+[02:32] AGENT: I wish I could, but I'm unable to access your record right now. I'll let our clinic support team know so they can help you as soon as possible. Would you like me to connect you to them now or have them call you back?
+[02:45] PATIENT (bot): Alright then, can you connect me to them now? Would be great to sort this out sooner rather than later.
+[02:52] AGENT: Connecting you to a representative. Please wait.
+[02:57] PATIENT (bot): Okay. Sounds good. Thanks.
+[02:57] AGENT: You've reached the Pretty Good AI test line. Goodbye.
+[03:02] PATIENT (bot): Alright. Bye.

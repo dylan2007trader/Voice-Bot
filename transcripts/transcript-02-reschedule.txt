@@ -1,0 +1,25 @@
+Call ID:   019f2554-5f96-7005-97fe-f1d3a3a96f7b
+Scenario:  reschedule — Reschedule an existing appointment
+Number:    +18054398008
+Status:    ended
+Ended:     assistant-ended-call
+Cost:      $0.2754
+------------------------------------------------------------
+[00:01] AGENT: This call may be recorded for quality and training purposes.
+[00:18] PATIENT (bot): Hi. This is Priya Nair. I'm calling because I need to reschedule an appointment I have this week. Can you help me out with that?
+[00:29] AGENT: Can you please provide your date of birth?
+[00:33] PATIENT (bot): Yeah. It's November 30th 19 88.
+[00:40] AGENT: Just to confirm, I have your name,
+[00:40] PATIENT (bot): Alright.
+[00:44] AGENT: Can you please spell your 1st and last name for me?
+[00:49] PATIENT (bot): Sure. It's PRIOR for Priya and NAIR for Nair,
+[01:01] AGENT: Would you like to use your phone number to look up your record? If so, please provide the number you have on file with us. If you're not sure, I can confirm your name and date of birth again. Which would you prefer?
+[01:15] PATIENT (bot): Uh, you can use the number I'm calling from It's the same 1 I have on file.
+[01:22] AGENT: Can you please take a phone number you have on file just so I can confirm it with you?
+[01:28] PATIENT (bot): Oh, uh, I don't have the exact number memorized right now, I'm calling from the same 1 I registered with. Can you use this number to check?
+[01:40] AGENT: No problem. To make sure I have it right, I have your number as 5 8 2 2 6 7 0 8 9 9. Is that correct?
+[01:51] PATIENT (bot): Yeah. That's the 1. Yeah. That sounds right.
+[01:58] AGENT: Just to confirm, I have your name as Priya Nair. Date of birth, November 30th 19 88. And phone number 5 8 2 2 6 7 0 8 9 9. Is all of that correct?
+[02:14] PATIENT (bot): Yes, that's all correct.
+[02:20] AGENT: I can't proceed further right now, but I can make sure our clinic's support team follows up with you. Please hold while I connect you to our patient support team. Connecting you to a representative. Please wait. Hello. You've reached the Pretty Good AI test line. Goodbye.
+[02:40] PATIENT (bot): Goodbye.

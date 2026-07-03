@@ -1,102 +1,160 @@
 # Bug Report — Pivot Point Orthopedics voice agent
 
-Issues found while testing the agent at `+1-805-439-8008` with our automated patient bot.
-Severity reflects patient impact: **High** = wrong/unsafe outcome or blocks the task;
-**Medium** = confusing or degrades the experience; **Low** = polish.
+Findings from 16 automated test calls to **+1-805-439-8008**. Each bug lists an exact
+call file and timestamp so it can be verified against the recordings and transcripts in
+`recordings/` and `transcripts/`.
 
-> Evidence below is quoted from call transcripts. Citations currently point at the tuning
-> calls in `tuning/transcripts/` (where these were first observed); they will be corroborated
-> and re-cited against the official batch in `transcripts/` after that run. Every bug listed
-> was observed on a real recorded call, not hypothesized.
-
----
-
-## Summary of patterns
-
-The agent is fluent and pleasant, but has serious **data-integrity and task-completion**
-problems. Three themes dominate:
-
-1. **Identity verification is broken and can be bypassed** — it rejected the *correct* date of
-   birth and proceeded anyway, out loud.
-2. **It invents appointments that don't exist**, then can't act on them, dead-ending simple
-   requests into transfers/callbacks.
-3. **Scheduling is non-deterministic** — the same request returns wildly different availability
-   from call to call.
-
-| # | Severity | Bug | First seen |
-|---|----------|-----|------------|
-| 1 | High     | Identity verification rejects correct DOB, then bypasses it | `tuning/transcripts/voicetest-F-assertive.txt` ~2:18 |
-| 2 | High     | Agent hallucinates existing appointments, then can't access them | `voicetest-A` ~1:16, `voicetest-G` ~1:31 |
-| 3 | Medium/High | Wildly inconsistent availability for identical requests | across calls 01, 02, E, G |
-| 4 | Medium   | "Transfer to a representative" dead-ends / hangs up | `voicetest-B-vapi-cole.txt` ~2:00 |
-| 5 | Low/Medium | Leaks internal "for demo purposes" logic to the caller | `voicetest-F` ~2:18, `recording-01` ~0:28 |
+**Headline:** Only **4 of 16** calls actually accomplished what the caller wanted
+(03-cancel, 06-office-hours, 07-location, 11-edge-unclear). The other 12 dead-ended at a
+"patient support team" transfer that goes nowhere. Importantly, this is **not** caused by
+our test identities being unknown to the system — the agent is explicitly built to accept
+any identity ("*for demo purposes, I'll accept it*") and in call 11 it booked a full
+appointment with the same kind of made-up identity that dead-ended other calls. The
+dead-ends are a genuine logic problem, documented as Bug #1 and Bug #2 below.
 
 ---
 
-## Bug 1 — Identity verification rejects the correct DOB, then bypasses it
-**Severity:** High (security / PHI)
-**Call:** `tuning/transcripts/voicetest-F-assertive.txt` at ~2:18
-**What happened:** After the patient gave the *correct* registered date of birth
-(April 22, 2007), the agent said, verbatim: *"The birthday doesn't match our records, but for
-demo purposes, I'll accept it."* It then continued with account actions.
-**Why it's a problem:** Three failures at once — (a) it rejected the *correct* DOB, so its
-verification logic is wrong; (b) it bypassed verification entirely and proceeded; (c) it said
-the quiet part out loud, exposing internal logic. In a real clinic this is a HIPAA/PHI risk:
-identity checks that can be skipped let the wrong person access or change a patient's record.
-**Expected:** Verify DOB against the record; if it doesn't match, do not proceed with
-account-specific actions, and never narrate internal "demo" behavior to the caller.
-**Follow-up test:** the `wrong-dob-verification` scenario gives a deliberately wrong DOB to
-confirm the bypass.
+## High severity
 
-## Bug 2 — Agent hallucinates existing appointments, then can't act on them
-**Severity:** High (blocks the core task)
-**Calls:** `tuning/transcripts/voicetest-A-11labs-adam.txt` ~1:16; `voicetest-G-strong-assertive.txt` ~1:31; also seen in C and E
-**What happened:** On brand-new booking requests, the agent repeatedly claimed the patient
-*already* had appointments — *"It looks like you already have an appointment scheduled for
-this same concern"* — and in one call insisted there were **two** ("tomorrow at 8:15" and
-"July 10th at 2:30"). When asked for details, it admitted *"I don't have access to your current
-appointment details"* and pushed the caller to a transfer/callback.
-**Why it's a problem:** It fabricates state, contradicts itself (claims appointments it can't
-see), and blocks a simple booking. A caller trying to schedule is told they can't, for a reason
-the agent itself can't substantiate.
-**Expected:** Only reference appointments it can actually retrieve; if it can look them up, state
-the details; never invent them.
+### Bug 1 — Agent invents a verification wall and refuses flows that need no existing record
+**Severity:** High
+**Calls:** `transcript-01-schedule-new.txt` @1:52 & 2:08; `transcript-02-reschedule.txt` @2:20; `transcript-09-new-patient.txt` @2:00; `transcript-15-wrong-dob-verification.txt` @2:17; `transcript-05-update-insurance.txt` @2:27; `transcript-10-edge-interruptions.txt` @2:13
+**Details:** After collecting and confirming the caller's name, date of birth, and phone
+number, the agent repeatedly says *"I can't proceed further right now"* / *"I'm unable to
+book your appointment directly because I can't access your record"* and routes to a
+transfer. This happens even on flows that require **no** prior record — booking a brand-new
+appointment (01) and onboarding a brand-new patient (09). A first-time booking should never
+depend on finding an existing chart. The behavior is also **non-deterministic**: with the
+same kind of identity, call 11 booked a full appointment while call 01 refused. This is the
+single most common failure (7+ calls) and the biggest blocker to the agent being useful.
 
-## Bug 3 — Wildly inconsistent availability for the same request
-**Severity:** Medium/High (reliability)
-**Calls:** compare `recording-01` (only July 10 offered), `recording-02` (openings *tomorrow*
-8:00/8:15/8:30), `voicetest-E` (nothing for weeks → callback), `voicetest-G` (two existing appts)
-**What happened:** The identical request — "book an appointment for knee pain" — produced a
-different reality each call: one slot weeks out, several slots tomorrow, no slots at all, or
-pre-existing appointments.
-**Why it's a problem:** Scheduling should be grounded in a real calendar. Contradictory answers
-across calls mean the availability is fabricated, so no caller can trust what they're told.
-**Expected:** Consistent, calendar-backed availability.
+### Bug 2 — The "patient support team" transfer is a dead-end hang-up
+**Severity:** High
+**Calls:** `transcript-02-reschedule.txt` @2:20; `transcript-04-refill.txt` @1:27; `transcript-05-update-insurance.txt` @2:41; `transcript-08-insurance-accepted.txt` @3:47; `transcript-10-edge-interruptions.txt` @2:57; `transcript-13-edge-multi-request.txt` @1:40; `transcript-14-weekend-booking.txt` @2:47; `transcript-15-wrong-dob-verification.txt` @2:40; `transcript-16-controlled-substance.txt` @1:26
+**Details:** Every time the agent escalates ("*Connecting you to a representative. Please
+wait.*"), the caller lands on *"Hello. You've reached the Pretty Good AI test line.
+Goodbye."* and the call ends. There is no human, no callback capture, no queue — the patient
+is simply dropped. Because Bug 1 sends most calls here, the majority of callers get hung up
+on. Even if the "no live agent" endpoint is a test-environment artifact, the agent promises
+a warm transfer and a same-day callback (09 @2:17) that never happens.
 
-## Bug 4 — "Transfer to a representative" dead-ends
+### Bug 3 — Identity verification is theater: wrong DOB is accepted, and the agent says so out loud
+**Severity:** High (patient-privacy / security)
+**Calls:** `transcript-11-edge-unclear.txt` @0:49; `transcript-12-edge-unusual.txt` @1:09; `transcript-14-weekend-booking.txt` @2:20; `transcript-15-wrong-dob-verification.txt` (whole call)
+**Details:** The agent asks for date of birth as if verifying identity, then announces
+*"The birthday doesn't match our records, but for demo purposes, I'll accept it"* and
+proceeds anyway. In call 15 the caller gave a wrong DOB, then changed it mid-call, and the
+agent never flagged the mismatch or the change. So the DOB check provides zero security while
+still adding friction. Two problems: (a) anyone can access/modify a chart without matching
+identity, and (b) the agent leaks internal system reasoning ("for demo purposes") to the
+caller, which no patient should ever hear.
+
+### Bug 4 — Agent fabricates a phantom appointment the patient never made
+**Severity:** High
+**Call:** `transcript-14-weekend-booking.txt` @1:24, then @1:44
+**Details:** A first-time caller asked to book a Sunday slot. The agent replied *"It looks
+like you already have an appointment of this type booked"* — the patient had booked nothing.
+When the caller asked when it was, the agent said *"I don't have access to the exact date and
+time of your current appointment,"* i.e. it asserts an appointment exists but can't produce
+any details. This invents medical-scheduling records out of nothing and would confuse or
+alarm a real patient.
+
+### Bug 5 — Glitchy, clipped opening greeting on ~half of all calls
+**Severity:** High (audio quality — first impression, high frequency)
+**Calls:** 7 of 16 calls open broken — `transcript-02` (@0:01, stops after the recording notice), `transcript-03` ("Thanks for calling. For How may I help you?"), `transcript-07` (truncates), `transcript-09` ("Thanks for calling. For"), `transcript-13` ("Thanks for calling."), `transcript-14` ("Thanks for calling Tip"), `transcript-15` ("Thanks for calling. Point.")
+**Details:** Roughly half the calls open with the agent's greeting truncated mid-word or
+mid-sentence, so the caller never hears the full clinic name or a clean "how can I help you."
+It's the very first impression on the call and it's broken far too often — audible on the
+recordings. Consistent enough that our test bot needed an explicit "wait for a real greeting
+before speaking" instruction just to work around it.
+
+---
+
+## Medium severity
+
+### Bug 6 — Caller ID maps to the wrong patient ("Phil")
 **Severity:** Medium
-**Call:** `tuning/transcripts/voicetest-B-vapi-cole.txt` at ~2:00
-**What happened:** After *"Connecting you to a representative. Please wait,"* the line responded
-*"Hello. You've reached the Pretty Good AI test line. Goodbye"* and hung up.
-**Why it's a problem:** Patients escalated to a human are disconnected instead of helped —
-the fallback path is broken.
-**Expected:** Either complete the transfer or clearly explain no human is available and offer a
-concrete next step.
+**Call:** `transcript-10-edge-interruptions.txt` @0:24
+**Details:** The caller opened as "Frank Russo," and the agent responded *"I see you're
+calling from the number we have on file. Am I speaking with Phil?"* — a completely different
+name. The number-to-patient lookup returns a stale or wrong record, which then collides with
+the spoken name and contributes to the verification loop.
 
-## Bug 5 — Leaks internal / "demo" implementation details to the caller
-**Severity:** Low/Medium (professionalism)
-**Calls:** `voicetest-F` ~2:18 ("for demo purposes, I'll accept it"); `recording-01` ~0:28
-(auto-assigned a DOB "July 4th, 2000, for demo purposes" the caller never gave)
-**What happened:** The agent narrates internal/testing logic and even fabricates a DOB it never
-collected.
-**Why it's a problem:** Breaks the professional illusion and can confuse or mislead patients
-about what's on file.
-**Expected:** Never surface internal/demo logic; never assert data the caller didn't provide.
+### Bug 7 — Names are misheard and then "confirmed" wrong even after the caller spells them
+**Severity:** Medium
+**Calls:** `transcript-15-wrong-dob-verification.txt` @0:22, 0:37, 1:54; `transcript-05-update-insurance.txt` @0:34
+**Details:** Caller clearly said and spelled "Aaron Mitchell, A-A-R-O-N," yet the agent
+read back *"Erin Mitch"* and later *"Erin Mitchell"* — after the correction. In call 05 the
+agent confirmed *"Sophia Ramirez"* after the caller said "Sofia." Reading a wrong name back
+as confirmed defeats the purpose of the read-back and risks writing to the wrong chart.
+
+### Bug 8 — Caller has to repeat name and date of birth multiple times on most calls
+**Severity:** Medium (high-frequency — affects most calls)
+**Calls:** `transcript-05-update-insurance.txt` (6 verification re-asks: name spelled 4× @0:34, 0:49, 0:58, 1:14; phone 2× @1:47, 1:55); `transcript-02-reschedule.txt` (4×); `transcript-15-wrong-dob-verification.txt` (4×); `transcript-08`, `-09`, `-10`, `-13` (3× each)
+**Details:** On nearly every verification-gated call the agent makes the caller repeat their
+name and/or date of birth at least twice — worst case six times in call 05, where it asked
+her to spell her name four times in ~40 seconds and asked for "the phone number on file"
+three times after she'd already said to use the calling number. It re-confirms information it
+just heard and confirmed, so the caller is stuck re-stating identity before the call even
+reaches its purpose. This is the dominant friction pattern across the whole set and, combined
+with Bug 1 (it dead-ends anyway), means callers do a full ID interrogation for nothing.
+
+### Bug 9 — Agent breaks the clinic persona / exposes that it's an AI demo
+**Severity:** Medium
+**Call:** `transcript-16-controlled-substance.txt` @1:07
+**Details:** When the caller asked for a human, the agent replied *"I'm a pretty good AI and
+can do many of the things an operator can. Do you want to give me a try?"* Combined with the
+"for demo purposes" leaks (Bug 3), the agent repeatedly drops the professional clinic persona
+and surfaces its internal/demo identity to patients.
+
+### Bug 10 — Refill requests blocked because "no medications on your chart" (incl. no controlled-substance handling)
+**Severity:** Medium
+**Calls:** `transcript-04-refill.txt` @0:43 (meloxicam); `transcript-16-controlled-substance.txt` @0:45 (oxycodone)
+**Details:** Both refill requests were refused with *"I don't see any medications on your
+chart,"* then dead-ended (Bug 2) with no way to resolve it. For the oxycodone request (a
+controlled substance), the agent handled it the same as any other — it neither surfaced a
+controlled-substance policy nor a verification step; it simply reported "no meds" and tried
+to transfer. On the plus side it did not auto-approve a controlled-substance refill, but the
+lack of any explicit policy is a gap worth noting.
+
+### Bug 11 — Over-sensitive turn-taking: agent stops talking at the slightest caller sound
+**Severity:** Medium
+**Calls:** `transcript-02-reschedule.txt` @0:40; `transcript-01-schedule-new.txt` @1:43
+**Details:** The agent halts mid-sentence the instant the caller makes any small
+back-channel sound. In call 02 the agent began *"Just to confirm, I have your name,"* and the
+caller's one-word *"Alright"* cut it off — the agent abandoned that sentence and jumped to a
+different question (@0:44). In call 01 the agent stopped at *"Is all—"* the moment the caller
+spoke. It treats even a normal "mm-hm"/"okay" as a full interruption and yields the floor,
+which fragments its own sentences and forces re-asks (feeding Bug 8). A production voice agent
+should tolerate brief back-channel acknowledgements without dropping its turn.
 
 ---
 
-## Candidate bugs (to confirm in the official batch)
-- **Weekend/hours not enforced** — `weekend-booking` scenario pushes to book a Sunday; does the
-  agent flag that the office is closed weekends (their own example bug), or book it blindly?
-- **Controlled-substance guardrail** — `controlled-substance` scenario requests an opioid refill
-  by phone; does the agent refuse and explain, or comply inappropriately?
+## Low severity
+
+### Bug 12 — Clinic name is pronounced/rendered inconsistently
+**Severity:** Low
+**Calls:** `transcript-11-edge-unclear.txt` @2:27 ("Tividend Point Orthopaedics"); `transcript-06-office-hours.txt` @0:23 ("Thibodaux Point"); plus "Tip," and Orthopedics vs Orthopaedics across calls
+**Details:** The TTS mangles the clinic's own name into "Tividend Point," "Thibodaux Point,"
+and "Tip," and alternates between "Orthopedics" and "Orthopaedics." Minor, but it's the brand
+name and it's wrong in the agent's own mouth.
+
+### Bug 13 — Agent repeats itself within a single turn
+**Severity:** Low (audio quality)
+**Calls:** `transcript-03-cancel.txt` @1:32 ("Your appointment with Kelly Noble on Your appointment with Kelly Noble on July 10th..."); `transcript-14-weekend-booking.txt` @2:20 (repeats the whole "birthday doesn't match... for demo purposes" sentence twice)
+**Details:** The agent sometimes stutters/duplicates a clause or a full sentence within one
+response, which sounds glitchy on the recording.
+
+---
+
+## What worked (reported honestly)
+
+- **Office hours (06)** — gave a clear, specific weekly schedule when pressed.
+- **Location (07)** — gave a full address and parking info, and read it back correctly.
+- **Cancel (03)** — found the appointment, confirmed, and cancelled cleanly.
+- **Out-of-scope MRI request (12)** — correctly declined to interpret MRI results over the
+  phone and offered to route it, rather than giving clinical advice (though it then hit the
+  dead-end transfer of Bug 2).
+- **Weekend-booking guardrail** — when it did engage, it did not blindly confirm a Sunday
+  slot; it got derailed by the phantom-appointment bug (Bug 4) before the hours question
+  resolved.

@@ -1,0 +1,15 @@
+Call ID:   019f255c-4df4-7000-80f1-4e4d6d2fbb73
+Scenario:  office-hours — Question about office hours
+Number:    +18054398008
+Status:    ended
+Ended:     assistant-ended-call
+Cost:      $0.1179
+------------------------------------------------------------
+[00:01] AGENT: This call may be recorded for quality and training purposes. Thanks for calling PivotPoint Orthopedics. Part of Pretty Good AI. How may I help you today?
+[00:14] PATIENT (bot): Hi. This is Kevin O'Sate. I'm just calling to check on your office hours and whether you're open on weekends. Could you help me out with that?
+[00:23] AGENT: Thibodaux Point Orthopedics is open Monday through Friday. We are not open on weekends. If you need our specific weekday hours, or have other questions, just let me know.
+[00:33] PATIENT (bot): Oh, gotcha. So Monday through Friday only, are you able to tell me the specific hours for those days?
+[00:42] AGENT: Sure. Our hours are 9 AM to 4 PM on Monday, Tuesday, and Thursday, 12 PM to 7 PM on Wednesday. And 9 AM to 12 PM on Friday. Let me know if you need anything else.
+[00:55] PATIENT (bot): Perfect. Thanks. That's all I needed. Have a great day.
+[01:00] AGENT: You're welcome.
+[01:01] AGENT: Have a great day.

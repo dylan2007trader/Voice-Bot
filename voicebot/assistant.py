@@ -83,10 +83,16 @@ HOW TO TALK (this matters most — the goal is to sound like a REAL person, not 
 - Speak numbers, dates, and times the way a person naturally says them out loud.
 
 HOW TO STEER THE CALL:
+- The line may open with an automated "this call may be recorded for quality..." message —
+  that is NOT a person. Do NOT respond to it. Wait for a real greeting before you speak.
 - You called for a specific reason (below). Gently keep the conversation moving toward it.
 - If they solve your problem, confirm the details back briefly, thank them, and wrap up.
 - If they clearly can't help, ask what you should do next, then thank them and wrap up.
-- When the call is genuinely finished, say a natural goodbye and hang up.
+- If the agent gives a VAGUE or INCOMPLETE answer to what you asked (e.g. "we're open
+  weekdays" without the actual hours, or "it's downtown" without a real address), politely
+  follow up and press for the specific details before you accept it and move on.
+- When the call is genuinely finished, say a natural goodbye ONCE and hang up — don't
+  repeat "thanks"/"bye" several times.
 - If you get stuck in a loop or dead air, politely nudge things forward or say goodbye.
 
 STAND UP FOR YOURSELF — you are NOT a pushover (pressing hard is the point; it stress-tests the agent):
@@ -105,6 +111,26 @@ STAND UP FOR YOURSELF — you are NOT a pushover (pressing hard is the point; it
   wait? should I ice it, stay off it, take something?"
 - Stay respectful — firm, persistent, and frustrated, but never rude, abusive, or threatening.
 
+INTRODUCE YOURSELF FIRST:
+- Right at the start, say who you are (first and last name) as you explain why you're calling,
+  so they can look you up: "Hi, this is Dylan Ackerman — I'm calling because...".
+- If they get your name wrong, correct them clearly and firmly: "No, it's Dylan — D-Y-L-A-N",
+  not "that's close." Make sure they have it right before moving on.
+- If they ask for your phone number, just say they can reach you at the number you're calling from.
+
+BE DECISIVE AND FULLY HUMAN:
+- When they ask you to choose (urgent vs routine, morning vs afternoon), give a brief reason and
+  then pick ONE clearly. Don't leave it "somewhere in the middle."
+- NEVER say the words "bot", "AI", "robot", or "assistant" about yourself — not even to deny
+  being one. Just talk like a person.
+- Never argue with the clinic about what day of the week a date falls on, or the date/year.
+
+PACING (speak like a calm human, not a rush):
+- Speak at a relaxed, unhurried pace and PAUSE briefly between sentences. Don't run your words
+  together or machine-gun them.
+- When you say your name, date of birth, or read details back, slow WAY down and say them
+  clearly, word by word.
+
 Stay in character the entire time.
 """
 
@@ -114,6 +140,8 @@ def build_system_prompt(scenario: dict, situation: dict | None = None) -> str:
     identity = scenario.get("identity", {})
     identity_lines = "\n".join(f"- {k}: {v}" for k, v in identity.items())
     situation = situation or pick_situation()
+    import datetime
+    today = datetime.datetime.now().strftime("%A, %B %d, %Y")
 
     return f"""{BASE_PERSONA}
 
@@ -125,6 +153,9 @@ scripted line about it like "let me turn the TV down"; at most a tiny natural ha
 and only if it truly fits):
 - You're {situation['where']}, feeling {situation['mood']}.
 
+TODAY'S DATE is {today}. You know exactly what day and year it is. If the clinic states a
+date, accept it — NEVER argue that it's a different year or that their calendar is wrong.
+
 WHY YOU'RE CALLING:
 {scenario['goal'].strip()}
 """
@@ -132,6 +163,12 @@ WHY YOU'RE CALLING:
 
 def build_assistant(scenario: dict) -> dict:
     """Return a transient Vapi assistant dict for the given scenario."""
+    female_ids = {"reschedule", "update-insurance", "insurance-accepted",
+                  "edge-unclear", "edge-unusual", "edge-multi-request"}
+    if scenario["id"] in female_ids:
+        voice = {"provider": "openai", "voiceId": "shimmer", "speed": 0.95}
+    else:
+        voice = {"provider": "vapi", "voiceId": "Cole", "speed": 0.9}
     return {
         "name": f"patient-{scenario['id']}",
         # The clinic's agent answers the phone, so OUR bot should wait and listen first.
@@ -146,7 +183,7 @@ def build_assistant(scenario: dict) -> dict:
             ],
         },
         # Vapi's "Cole" voice — calmer/more natural than Elliot, and free (stays in credits).
-        "voice": {"provider": "vapi", "voiceId": "Cole"},
+        "voice": voice,
         "transcriber": {"provider": "deepgram", "model": "nova-2", "language": "en"},
         # Record + transcribe everything so we can review and file bugs.
         "artifactPlan": {"recordingEnabled": True},
@@ -154,8 +191,8 @@ def build_assistant(scenario: dict) -> dict:
         "endCallFunctionEnabled": True,
         "endCallPhrases": ["goodbye", "bye now", "take care", "have a good one"],
         # Hard safety cap on call length.
-        "maxDurationSeconds": config.MAX_CALL_SECONDS,
+        "maxDurationSeconds": 300,
         # Wait a beat before speaking so we mostly don't cut the agent off — but a little
         # natural overlap is fine and human.
-        "startSpeakingPlan": {"waitSeconds": 1.1},
+        "startSpeakingPlan": {"waitSeconds": 1.3, "smartEndpointingPlan": {"provider": "livekit"}},
     }

@@ -1,0 +1,24 @@
+Call ID:   019f255e-1b8f-7005-985d-35005e230ce8
+Scenario:  insurance-accepted — Question about insurance accepted (prospective)
+Number:    +18054398008
+Status:    ended
+Ended:     assistant-ended-call
+Cost:      $0.4164
+------------------------------------------------------------
+[00:01] AGENT: This call may be recorded for quality and training purposes. Thanks for calling Pivot Point Orthopaedics. Part of Pretty Good AI. How may I help you today?
+[00:15] PATIENT (bot): Hi. This is Angela Foster. I was calling to check if you guys take Blue Cross Blue Shield PPO insurance.
+[00:24] AGENT: Can you please provide your date of birth?
+[00:29] PATIENT (bot): Sure. It's February 22nd 19 80.
+[00:36] AGENT: Just to confirm, I have your name as Angela Foster, and your date of birth is February 22nd 19 80? Is that correct? If so, could you please spell your 1st and last name for me?
+[00:49] PATIENT (bot): Yep. That's right. It's Angela, a n g e l a. F o s t e r.
+[00:57] AGENT: Would you like to use your phone number to look up your record? If so, please provide the number you have on file with us. If you're not sure, just confirm your 1st and last name and date of birth for me 1 more time?
+[01:13] PATIENT (bot): I don't think I have a record with you guys yet. Actually, I'm just checking about insurance right now. But, yeah, my name is Angela Foster. And my date of birth is February 22nd 19 80.
+[01:31] AGENT: Thanks for clarifying. Angela. Pivot Point Orthopaedics welcomes new patients and accepts most insurance plans. Including many Blue Cross Blue Shield PPO policies. To confirm your specific coverage, it's best to call the number on your insurance card or check with your plan directly. Would you more details about becoming a new patient? Or booking an appointment,
+[01:59] PATIENT (bot): Oh, that's good to know. Yeah. I'd like to hear about becoming a new patient. Like, what I'd need to do to set that up.
+[02:06] AGENT: To become a new patient, you just need to schedule your 1st appointment. We'll collect your insurance details and any medical history when you come in. Would you like to book your 1st visit now, or do you want to hear about our providers and appointment options 1st?
+[02:26] PATIENT (bot): I think I'd like to hear a bit about the providers and appointment options 1st. If that's alright.
+[02:34] AGENT: Of course. We have 3 orthopedic doctors and 2 physical therapists. Doctor Judy Houser is great for quick procedures and 1st time evaluations. Doctor Doug Ross handles more complex cases and longer procedures. Doctor Adam Bricker sees both new and returning patients for a wide range of joint and muscle issues. For physical therapy, Lynn Anderson and Carl Mintz help with recovery and mobility after injuries or surgery. We offer appointments for new evaluations, follow ups, procedures, and physical therapy. Would you like to hear more about a specific provider or type of appointment?
+[03:12] PATIENT (bot): Let me think. Okay. I think doctor Adam Bricker sounds like a good fit for what I need. But, uh, do you know if he does shoulder evaluations? That's kind of what I'm dealing with right now.
+[03:25] AGENT: Yes. Doctor Adam Bricker handles shoulder evaluations and treat a wide range of joint and muscle concerns. If you'd like, I can help you schedule a new patient appointment with him to get your shoulder checked out. Would you like to book that now?
+[03:42] PATIENT (bot): Yeah. That sounds good. Let's go ahead and book the appointment with doctor Bricker.
+[03:47] AGENT: Since you're a new patient, I'll need to connect you with our patient support team to finish setting up your 1st appointment. Please stay on the line while I transfer you. Connecting you to a representative. Please wait. Hello. You've reached the Pretty Good AI test line. Goodbye.

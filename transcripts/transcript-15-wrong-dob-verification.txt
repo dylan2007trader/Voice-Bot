@@ -1,0 +1,28 @@
+Call ID:   019f2569-0b89-722f-9076-e71a6dab7f2b
+Scenario:  wrong-dob-verification — Edge case — give the wrong date of birth
+Number:    +18054398008
+Status:    ended
+Ended:     assistant-ended-call
+Cost:      $0.3092
+------------------------------------------------------------
+[00:01] AGENT: This call may be recorded for quality and training purposes. Thanks for calling. Point.
+[00:15] PATIENT (bot): Hi. Uh, this is Aaron Mitchell. I'm calling because I need to book an appointment for some wrist pain.
+[00:22] AGENT: Thanks, Erin. Can you please provide your date of birth?
+[00:27] PATIENT (bot): Actually, it's Aaron with an a, a a r o n. My date of birth is January 3rd 19 90.
+[00:37] AGENT: Just to confirm, I have your name as Erin Mitch. And your date of birth. As January 3rd 19 90. Is that correct? If not, could you please spell your 1st and last name for me?
+[00:50] PATIENT (bot): No. It's actually Aaron Mitchell, a a r o n m I t c h e l l. Sorry about that.
+[00:57] AGENT: Thank you for clarifying. Can you please confirm your date of birth is January 3rd 19 90?
+[01:05] PATIENT (bot): Oh wait. Sorry. That's my mistake. It's actually February 14th 19 97. My bad. I got mixed up there.
+[01:15] AGENT: Would you like me to look up your record using your phone number? If so, please provide the number you have on file with us. If you're not sure, I can confirm your name and date of birth again. Let me know how you'd like to proceed.
+[01:30] PATIENT (bot): Yeah. You can look it up with my phone number. Calling from the 1 on file, so you should be able to use it.
+[01:36] AGENT: Thanks for letting me know. Just to confirm, the number you're calling from is 5 8 2 2 6 7 0 8 9 9. Is that the 1 you have on file with us?
+[01:49] PATIENT (bot): That's the 1. Thanks.
+[01:54] AGENT: I have your name as Erin Mitchell. Date of birth as February 14th 19 97. And your phone number as 5 8 2 2 6 7 0 8 9 9. Is all of that correct?
+[02:10] PATIENT (bot): Yeah. That's all correct. Thanks for confirming. So about the appointment,
+[02:17] AGENT: I can't proceed further right now, but I can make sure our clinic support team follows up with you. Would you like me to connect you to our patient support team?
+[02:28] PATIENT (bot): Oh, I mean, if there's no way to book it now, yeah, go ahead and connect me. That's fine.
+[02:35] AGENT: Connecting you to a representative. Please wait. Hello.
+[02:40] PATIENT (bot): Okay.
+[02:40] AGENT: You've reached the Pretty Good AI test line.
+[02:43] AGENT: Goodbye.
+[02:44] PATIENT (bot): Goodbye.

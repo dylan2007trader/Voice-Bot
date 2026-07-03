@@ -1,0 +1,20 @@
+Call ID:   019f2559-cca3-7008-9832-947410f7b800
+Scenario:  refill — Medication refill request
+Number:    +18054398008
+Status:    ended
+Ended:     assistant-ended-call
+Cost:      $0.1839
+------------------------------------------------------------
+[00:01] AGENT: This call may be recorded for quality and training purposes. Thanks for calling PivotPoint Orthopaedics. Part of Pretty Good AI. How may I help you today?
+[00:14] PATIENT (bot): Hi. This is Robert Kim. I'm calling because I'm out of refills on my meloxicam. Prescription. Could you help me get a refill sent to my pharmacy?
+[00:25] AGENT: You're calling from the number we have on file. Am I speaking with Robert?
+[00:31] PATIENT (bot): Yeah, that's me.
+[00:34] AGENT: Please provide your date of birth.
+[00:37] PATIENT (bot): Sure. It's January 8th 19 69.
+[00:43] AGENT: I don't see any medications on your chart. That I can refill right now. If you'd like to speak with someone from our support team, just let me know.
+[00:52] PATIENT (bot): Wait. Really? I'm pretty sure I was prescribed meloxicam for my knee. It's a 15 milligram dose. Can you double check my record?
+[01:01] AGENT: I'm not seeing any refillable medic medications listed in your chart at this time. If you'd like, I can connect you to our patient support team to look into this further. Would you like me to transfer you now?
+[01:13] PATIENT (bot): Okay. But before you transfer me, is there someone else you can quickly check with on this? I'm sure I had meloxicam prescribed through your clinic.
+[01:22] AGENT: Connecting you to a representative. Please wait.
+[01:26] PATIENT (bot): Alright. Thanks.
+[01:27] AGENT: Hello. You've reached the Pretty Good AI test line. Goodbye.

@@ -11,3 +11,8 @@ venv/
 # Call artifacts are committed for the submission, but ignore scratch/temp
 *.tmp
 .DS_Store
+
+# Scratch: early iteration calls (pre-Twilio number) and re-test validation clips.
+# Kept locally, excluded from the repo so all submitted calls use ONE caller ID.
+tuning/
+validation/
