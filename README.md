@@ -8,6 +8,8 @@ Built in Python on top of [Vapi](https://vapi.ai), which handles the telephony, 
 LLM, text-to-speech, turn-taking, and call recording. Our code defines the *patient* (a set of
 scenario personas), places the outbound calls, and pulls back the recordings and transcripts.
 
+[https://www.loom.com/share/b7eecbc1ec78421897a87ce1e65a9ad5](https://www.loom.com/share/d594e80c55124d2f94ba89a8bf2081a7)
+
 - **Clinic under test:** Pivot Point Orthopedics (demo clinic)
 - **Number under test:** `+1-805-439-8008` (the only number this bot ever calls)
 
